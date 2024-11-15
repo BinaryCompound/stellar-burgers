@@ -18,7 +18,7 @@
 .header {
   display: flex;
   align-items: center;
-  min-height: 64px;
+  min-height: 10px;
 }
 
 .button {
