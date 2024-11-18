@@ -27,7 +27,6 @@ import { useDispatch, useSelector } from '../../services/store';
 import { OrderDetailsUI } from '../ui/order-details';
 import { checkUser } from '../../services/slices/userSlice';
 import { selectOrderData } from '../../services/slices/orderSlice';
-// import { PageShowComponent } from '../../pages/page-show-component/page-show-component';
 
 const App = () => {
   const location = useLocation();
@@ -36,9 +35,6 @@ const App = () => {
   const backgroundLocation = location.state?.background;
   const { param } = useParams();
   const orderData = useSelector(selectOrderData);
-  // console.log({ param });
-
-  // const orderNumber = Number(param);
 
   useEffect(() => {
     dispatch(checkUser());
@@ -127,9 +123,11 @@ const App = () => {
             <Route
               path='/profile/orders/:number'
               element={
-                <Modal title={''} onClose={() => navigate('/profile/orders')}>
-                  <OrderInfo />
-                </Modal>
+                <ProtectedRoute>
+                  <Modal title={''} onClose={() => navigate('/profile/orders')}>
+                    <OrderInfo />
+                  </Modal>
+                </ProtectedRoute>
               }
             />
           </Routes>
